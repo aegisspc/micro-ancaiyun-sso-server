@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ancaiyun.mapper.CountrysMapper">
+
+	<resultMap id="BaseResultMap" type="java.util.Map">
+		<id column="id" jdbcType="VARCHAR" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="city_id" jdbcType="VARCHAR" property="cityId" />
+	</resultMap>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select * from cj_ancaiyun_countrys where id =#{id ,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="selectAllBySelection" parameterType="java.util.Map" resultMap="BaseResultMap">
+		select * from cj_ancaiyun_countrys
+		<where>
+			<if test="cityId != null and cityId != ''">
+				and city_id =#{cityId,jdbcType=VARCHAR}
+			</if>
+			<if test="name != null and name != ''">
+				and name like CONCAT(CONCAT('%', #{name,jdbcType=VARCHAR}), '%')
+			</if>
+		</where>
+	</select>
+</mapper>  

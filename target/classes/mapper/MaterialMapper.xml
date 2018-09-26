@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"   
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ancaiyun.mapper.MaterialMapper">
+    <resultMap id="BaseResultMap" type="com.ancaiyun.entity.ProductCategory">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+        <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+        <result column="type_sequence" jdbcType="VARCHAR" property="typeSequence" />
+        <result column="sort_num" jdbcType="VARCHAR" property="sortNum" />
+    </resultMap>
+    <resultMap id="SubBaseResultMap" type="com.ancaiyun.entity.ProductSubCategory">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+        <result column="pc_name" jdbcType="VARCHAR" property="pcName" />
+        <result column="pc_level" jdbcType="BOOLEAN" property="pcLevel" />
+        <result column="pc_sequence" jdbcType="INTEGER" property="pcSequence" />
+        <result column="pc_category_id" jdbcType="VARCHAR" property="pcCategoryId" />
+        <result column="parent_id" jdbcType="VARCHAR" property="parentId" />
+    </resultMap>
+
+	<select id="selectBidSecondBySelection" parameterType="com.ancaiyun.entity.ProductSubCategoryRelevance" resultType="com.ancaiyun.entity.ProductSubCategoryRelevance">
+		select 
+			* 
+		from 
+			cj_ancaiyun_product_sub_category_relevance
+		<where>
+			del_flag = "0"
+			<if test="relatedId != null and relatedId != ''">
+				and related_id =#{relatedId,jdbcType=VARCHAR}
+			</if>
+			<if test="productSubCategoryId != null and productSubCategoryId != ''">
+				and product_sub_category_id =#{productSubCategoryId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectSecondBySelection" parameterType="com.ancaiyun.entity.ProductSubCategory" resultMap="SubBaseResultMap">
+		select
+		*
+		from
+		cj_ancaiyun_product_sub_category
+		<where>
+			del_flag = "0"
+			<if test="parentId != null and parentId != ''">
+				and parent_id =#{parentId,jdbcType=VARCHAR}
+			</if>
+			<if test="pcCategoryId != null and pcCategoryId != ''">
+				and pc_category_id =#{pcCategoryId,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectSecondById" parameterType="java.lang.String" resultMap="SubBaseResultMap">
+		select * from cj_ancaiyun_product_sub_category where id = #{id,jdbcType=VARCHAR} and del_flag = "0"
+	</select>
+	
+	<select id="selectFirstById" parameterType="java.lang.String" resultMap="SubBaseResultMap">
+		select * from cj_ancaiyun_product_category where id = #{id,jdbcType=VARCHAR} and del_flag = "0"
+	</select>
+	
+	<select id="selectFirstAll" resultMap="BaseResultMap">
+		select * from cj_ancaiyun_product_category where del_flag = "0"
+	</select>
+	
+	<update id="delete" parameterType="java.lang.String">
+		update cj_ancaiyun_product_sub_category_relevance set del_flag = "1" where id = #{id,jdbcType=VARCHAR} and del_flag = "0"
+	</update>
+	
+	<insert id="insert" parameterType="com.ancaiyun.entity.ProductSubCategoryRelevance">
+		insert into cj_ancaiyun_product_sub_category_relevance
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">id,</if>
+			<if test="delFlag != null and delFlag != '' ">del_flag,</if>
+			<if test="createTime != null">create_time,</if>
+			<if test="relatedId != null and relatedId != ''">related_id,</if>
+			<if test="productSubCategoryId != null and productSubCategoryId != ''">product_sub_category_id,</if>
+			<if test="productSubCategoryName != null and productSubCategoryName != ''">product_sub_category_name,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null and id != ''">#{id,jdbcType=VARCHAR},</if>
+			<if test="delFlag != null and delFlag != ''">#{delFlag,jdbcType=VARCHAR},</if>
+			<if test="createTime != null">#{createTime,jdbcType=TIMESTAMP},</if>
+			<if test="relatedId != null and relatedId != ''">#{relatedId,jdbcType=VARCHAR},</if>
+			<if test="productSubCategoryId != null and productSubCategoryId != ''">#{productSubCategoryId,jdbcType=VARCHAR},</if>
+			<if test="productSubCategoryName != null and productSubCategoryName != ''">#{productSubCategoryName,jdbcType=VARCHAR},</if>
+		</trim>
+	</insert>
+	
+</mapper>

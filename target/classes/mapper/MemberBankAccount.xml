@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ancaiyun.mapper.MemberBankAccountMapper">
+    <resultMap id="BaseResultMap" type="com.ancaiyun.entity.MemberBankAccount">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="agent_id" jdbcType="VARCHAR" property="agentId" />
+        <result column="trade_id" jdbcType="INTEGER" property="tradeId" />
+        <result column="create_time" jdbcType="INTEGER" property="createTime" />
+        <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,agent_id,trade_id,create_time,del_flag
+    </sql>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from cj_ancaiyun_member_bank_account where id = #{id,jdbcType=VARCHAR} and del_flag = "0"
+    </select>
+    <select id="insertSelective" parameterType="com.ancaiyun.entity.MemberBankAccount">
+        insert into cj_ancaiyun_member_bank_account
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                id ,
+            </if>
+            <if test="agentId != null and agentId != ''">
+                agent_id,
+            </if>
+            <if test="tradeId != null and tradeId != ''">
+                trade_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null and id != ''">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="agentId != null and agentId != ''">
+                #{agentId,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeId != null and tradeId != ''">
+                #{tradeId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null and delFlag != ''">
+                #{delFlag,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </select>
+
+</mapper>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ancaiyun.mapper.MemberMapper">
+    <resultMap id="BaseResultMap" type="com.ancaiyun.entity.Member">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="member_bonus_points" jdbcType="INTEGER" property="memberBonusPoints" />
+        <result column="login_count" jdbcType="INTEGER" property="loginCount" />
+        <result column="landline_telephone" jdbcType="VARCHAR" property="landlineTelephone" />
+        <result column="province_city_country" jdbcType="VARCHAR" property="provinceCityCountry" />
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
+        <result column="real_name" jdbcType="VARCHAR" property="realName" />
+        <result column="member_credit" jdbcType="INTEGER" property="memberCredit" />
+        <result column="photo_id" jdbcType="VARCHAR" property="photoId" />
+        <result column="store_id" jdbcType="VARCHAR" property="storeId" />
+        <result column="qq" jdbcType="VARCHAR" property="qq" />
+        <result column="user_id" jdbcType="VARCHAR" property="userId" />
+        <result column="extra_data_status" jdbcType="VARCHAR" property="extraDataStatus" />
+        <result column="extra_data_id" jdbcType="VARCHAR" property="extraDataId" />
+        <result column="status" jdbcType="VARCHAR" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+        <result column="money" jdbcType="DOUBLE" property="money" />
+        <result column="freeze_money" jdbcType="DOUBLE" property="freezeMoney" />
+        <result column="pay_password" jdbcType="VARCHAR" property="payPassword" />
+        <result column="bid_security_money" jdbcType="DOUBLE" property="bidSecurityMoney" />
+        <result column="trade_status" jdbcType="VARCHAR" property="tradeStatus" />
+        <result column="sub_username" jdbcType="VARCHAR" property="subUsername" />
+        <result column="member_number" jdbcType="VARCHAR" property="memberNumber" />
+        <result column="member_bank_account_id" jdbcType="VARCHAR" property="memberBankAccountId" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, mobile, member_bonus_points, login_count, landline_telephone, province_city_country,
+        address, birthday, real_name, member_credit, photo_id, store_id, qq, user_id, extra_data_status,
+        extra_data_id, status, create_time, del_flag, money, freeze_money, pay_password,
+        bid_security_money, trade_status, sub_username, member_number, member_bank_account_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cj_ancaiyun_member
+        where id = #{id,jdbcType=VARCHAR}
+        and del_flag = "0";
+    </select>
+    <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cj_ancaiyun_member member
+        where user_id = (select id from cj_ancaiyun_user where username = #{username,jdbcType=VARCHAR} and del_flag = "0")
+        and del_flag = "0";
+    </select>
+    <select id="selectByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from cj_ancaiyun_member
+        where user_id = #{userId,jdbcType=VARCHAR}
+        and del_flag = "0";
+    </select>
+    <select id="selectByMobile" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cj_ancaiyun_member
+        where mobile = #{mobile,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByMemberNumber" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select * from cj_ancaiyun_member where member_number = #{memberNumber,jdbcType=VARCHAR} and del_flag = "0"
+    </select>
+    <update id="updateByPrimaryKeySelective" parameterType="com.ancaiyun.entity.Member">
+        update cj_ancaiyun_member
+        <set>
+            <if test="mobile != null">
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="memberBonusPoints != null">
+                member_bonus_points = #{memberBonusPoints,jdbcType=INTEGER},
+            </if>
+            <if test="loginCount != null">
+                login_count = #{loginCount,jdbcType=INTEGER},
+            </if>
+            <if test="landlineTelephone != null">
+                landline_telephone = #{landlineTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCityCountry != null">
+                province_city_country = #{provinceCityCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=TIMESTAMP},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberCredit != null">
+                member_credit = #{memberCredit,jdbcType=INTEGER},
+            </if>
+            <if test="photoId != null">
+                photo_id = #{photoId,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                store_id = #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="extraDataStatus != null">
+                extra_data_status = #{extraDataStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="extraDataId != null">
+                extra_data_id = #{extraDataId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                money = #{money,jdbcType=DOUBLE},
+            </if>
+            <if test="freezeMoney != null">
+                freeze_money = #{freezeMoney,jdbcType=DOUBLE},
+            </if>
+            <if test="payPassword != null">
+                pay_password = #{payPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="bidSecurityMoney != null">
+                bid_security_money = #{bidSecurityMoney,jdbcType=DOUBLE},
+            </if>
+            <if test="tradeStatus != null">
+                trade_status = #{tradeStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="subUsername != null">
+                sub_username = #{subUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="memberNumber != null">
+                member_number = #{memberNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="memberBankAccountId != null">
+                member_bank_account_id = #{memberBankAccountId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <insert id="insertSelective" parameterType="com.ancaiyun.entity.Member">
+        insert into cj_ancaiyun_member
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="memberBonusPoints != null">
+                member_bonus_points,
+            </if>
+            <if test="loginCount != null">
+                login_count,
+            </if>
+            <if test="landlineTelephone != null">
+                landline_telephone,
+            </if>
+            <if test="provinceCityCountry != null">
+                province_city_country,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="birthday != null">
+                birthday,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="memberCredit != null">
+                member_credit,
+            </if>
+            <if test="photoId != null">
+                photo_id,
+            </if>
+            <if test="storeId != null">
+                store_id,
+            </if>
+            <if test="qq != null">
+                qq,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="extraDataStatus != null">
+                extra_data_status,
+            </if>
+            <if test="extraDataId != null">
+                extra_data_id,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="mobile != null">
+                mobile,
+            </if>
+            <if test="freezeMoney != null">
+                freeze_money,
+            </if>
+            <if test="payPassword != null">
+                pay_password,
+            </if>
+            <if test="bidSecurityMoney != null">
+                bid_security_money,
+            </if>
+            <if test="tradeStatus != null">
+                trade_status,
+            </if>
+            <if test="subUsername != null">
+                sub_username,
+            </if>
+            <if test="memberNumber != null">
+                member_number,
+            </if>
+            <if test="memberBankAccountId != null">
+                member_bank_account_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="memberBonusPoints != null">
+                #{memberBonusPoints,jdbcType=VARCHAR},
+            </if>
+            <if test="loginCount != null">
+                #{loginCount,jdbcType=VARCHAR},
+            </if>
+            <if test="landlineTelephone != null">
+                #{landlineTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="provinceCityCountry != null">
+                #{provinceCityCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                #{birthday,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberCredit != null">
+                #{memberCredit,jdbcType=VARCHAR},
+            </if>
+            <if test="photoId != null">
+                #{photoId,jdbcType=VARCHAR},
+            </if>
+            <if test="storeId != null">
+                #{storeId,jdbcType=VARCHAR},
+            </if>
+            <if test="qq != null">
+                #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=VARCHAR},
+            </if>
+            <if test="extraDataStatus != null">
+                #{extraDataStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="extraDataId != null">
+                #{extraDataId,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=VARCHAR},
+            </if>
+            <if test="money != null">
+                #{money,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null">
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="freezeMoney != null">
+                #{freezeMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="payPassword != null">
+                #{payPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="bidSecurityMoney != null">
+                #{bidSecurityMoney,jdbcType=VARCHAR},
+            </if>
+            <if test="tradeStatus != null">
+                #{tradeStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="subUsername != null">
+                #{subUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="memberNumber != null">
+                #{memberNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="memberBankAccountId != null">
+                #{memberBankAccountId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select * from cj_ancaiyun_member order by create_time ASC
+    </select>
+</mapper>

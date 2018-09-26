@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ancaiyun.mapper.MemberExtraDataMapper">
+    <resultMap id="BaseResultMap" type="com.ancaiyun.entity.MemberExtraData">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+        <result column="company_registered_capital" jdbcType="DECIMAL" property="companyRegisteredCapital" />
+        <result column="company_employee_number" jdbcType="INTEGER" property="companyEmployeeNumber" />
+        <result column="company_telephone" jdbcType="VARCHAR" property="companyTelephone" />
+        <result column="company_province_city_country" jdbcType="VARCHAR" property="companyProvinceCityCountry" />
+        <result column="company_enterprise_nature" jdbcType="VARCHAR" property="companyEnterpriseNature" />
+        <result column="company_taxpayer_type" jdbcType="VARCHAR" property="companyTaxpayerType" />
+        <result column="company_annual_turnover" jdbcType="VARCHAR" property="companyAnnualTurnover" />
+        <result column="company_tax_rate" jdbcType="VARCHAR" property="companyTaxRate" />
+        <result column="company_address" jdbcType="VARCHAR" property="companyAddress" />
+        <result column="company_business_scope" jdbcType="VARCHAR" property="companyBusinessScope" />
+        <result column="company_legal_person_name" jdbcType="VARCHAR" property="companyLegalPersonName" />
+        <result column="company_website" jdbcType="VARCHAR" property="companyWebsite" />
+        <result column="company_legal_person_certificate_type" jdbcType="VARCHAR" property="companyLegalPersonCertificateType" />
+        <result column="company_legal_person_certificate_number" jdbcType="VARCHAR" property="companyLegalPersonCertificateNumber" />
+        <result column="company_legal_person_certificate_telephone" jdbcType="VARCHAR" property="companyLegalPersonCertificateTelephone" />
+        <result column="company_business_license" jdbcType="VARCHAR" property="companyBusinessLicense" />
+        <result column="company_unified_social_credit_code" jdbcType="VARCHAR" property="companyUnifiedSocialCreditCode" />
+        <result column="company_business_license_issue_date" jdbcType="TIMESTAMP" property="companyBusinessLicenseIssueDate" />
+        <result column="company_business_license_register_date" jdbcType="TIMESTAMP" property="companyBusinessLicenseRegisterDate" />
+        <result column="company_business_license_validaty_date" jdbcType="TIMESTAMP" property="companyBusinessLicenseValidatyDate" />
+        <result column="company_business_license_address" jdbcType="VARCHAR" property="companyBusinessLicenseAddress" />
+        <result column="company_business_license_electronic_version" jdbcType="VARCHAR" property="companyBusinessLicenseElectronicVersion" />
+        <result column="company_enterprise_authorization_electronic_version" jdbcType="VARCHAR" property="companyEnterpriseAuthorizationElectronicVersion" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+        <result column="company_logo_id" jdbcType="VARCHAR" property="companyLogoId" />
+        <result column="contact_position" jdbcType="VARCHAR" property="contactPosition" />
+        <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+        <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+        <result column="registered_address" jdbcType="VARCHAR" property="registeredAddress" />
+        <result column="basic_rate" jdbcType="DECIMAL" property="basicRate" />
+        <result column="float_rate" jdbcType="DECIMAL" property="floatRate" />
+        <result column="final_rate" jdbcType="DECIMAL" property="finalRate" />
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ancaiyun.entity.MemberExtraData">
+        <result column="company_info_detail" jdbcType="LONGVARCHAR" property="companyInfoDetail" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, company_name, company_registered_capital, company_employee_number, company_telephone,
+        company_province_city_country, company_enterprise_nature, company_taxpayer_type,
+        company_annual_turnover, company_tax_rate, company_address, company_business_scope,
+        company_legal_person_name, company_website, company_legal_person_certificate_type,
+        company_legal_person_certificate_number, company_legal_person_certificate_telephone,
+        company_business_license, company_unified_social_credit_code, company_business_license_issue_date,
+        company_business_license_register_date, company_business_license_validaty_date, company_business_license_address,
+        company_business_license_electronic_version, company_enterprise_authorization_electronic_version,
+        create_time, del_flag, company_logo_id, contact_position, contact_name, contact_phone,
+        registered_address, basic_rate, float_rate, final_rate
+    </sql>
+    <sql id="Blob_Column_List">
+        company_info_detail
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List" />
+        ,
+        <include refid="Blob_Column_List" />
+        from cj_ancaiyun_member_extra_data
+        where id = #{id,jdbcType=VARCHAR} and del_flag = "0"
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+        delete from cj_ancaiyun_member_extra_data
+        where id = #{id,jdbcType=VARCHAR}
+    </delete>
+    <insert id="insert" parameterType="com.ancaiyun.entity.MemberExtraData">
+        insert into cj_ancaiyun_member_extra_data (id, company_name, company_registered_capital,
+        company_employee_number, company_telephone,
+        company_province_city_country, company_enterprise_nature,
+        company_taxpayer_type, company_annual_turnover,
+        company_tax_rate, company_address, company_business_scope,
+        company_legal_person_name, company_website,
+        company_legal_person_certificate_type, company_legal_person_certificate_number,
+        company_legal_person_certificate_telephone, company_business_license,
+        company_unified_social_credit_code, company_business_license_issue_date,
+        company_business_license_register_date, company_business_license_validaty_date,
+        company_business_license_address, company_business_license_electronic_version,
+        company_enterprise_authorization_electronic_version, create_time,
+        del_flag, company_logo_id, contact_position,
+        contact_name, contact_phone, registered_address,
+        basic_rate, float_rate, final_rate,
+        company_info_detail)
+        values (#{id,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyRegisteredCapital,jdbcType=DECIMAL},
+        #{companyEmployeeNumber,jdbcType=INTEGER}, #{companyTelephone,jdbcType=VARCHAR},
+        #{companyProvinceCityCountry,jdbcType=VARCHAR}, #{companyEnterpriseNature,jdbcType=VARCHAR},
+        #{companyTaxpayerType,jdbcType=VARCHAR}, #{companyAnnualTurnover,jdbcType=VARCHAR},
+        #{companyTaxRate,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, #{companyBusinessScope,jdbcType=VARCHAR},
+        #{companyLegalPersonName,jdbcType=VARCHAR}, #{companyWebsite,jdbcType=VARCHAR},
+        #{companyLegalPersonCertificateType,jdbcType=VARCHAR}, #{companyLegalPersonCertificateNumber,jdbcType=VARCHAR},
+        #{companyLegalPersonCertificateTelephone,jdbcType=VARCHAR}, #{companyBusinessLicense,jdbcType=VARCHAR},
+        #{companyUnifiedSocialCreditCode,jdbcType=VARCHAR}, #{companyBusinessLicenseIssueDate,jdbcType=TIMESTAMP},
+        #{companyBusinessLicenseRegisterDate,jdbcType=TIMESTAMP}, #{companyBusinessLicenseValidatyDate,jdbcType=TIMESTAMP},
+        #{companyBusinessLicenseAddress,jdbcType=VARCHAR}, #{companyBusinessLicenseElectronicVersion,jdbcType=VARCHAR},
+        #{companyEnterpriseAuthorizationElectronicVersion,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+        #{delFlag,jdbcType=VARCHAR}, #{companyLogoId,jdbcType=VARCHAR}, #{contactPosition,jdbcType=VARCHAR},
+        #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{registeredAddress,jdbcType=VARCHAR},
+        #{basicRate,jdbcType=DECIMAL}, #{floatRate,jdbcType=DECIMAL}, #{finalRate,jdbcType=DECIMAL},
+        #{companyInfoDetail,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.ancaiyun.entity.MemberExtraData">
+        insert into cj_ancaiyun_member_extra_data
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="companyName != null">
+                company_name,
+            </if>
+            <if test="companyRegisteredCapital != null">
+                company_registered_capital,
+            </if>
+            <if test="companyEmployeeNumber != null">
+                company_employee_number,
+            </if>
+            <if test="companyTelephone != null">
+                company_telephone,
+            </if>
+            <if test="companyProvinceCityCountry != null">
+                company_province_city_country,
+            </if>
+            <if test="companyEnterpriseNature != null">
+                company_enterprise_nature,
+            </if>
+            <if test="companyTaxpayerType != null">
+                company_taxpayer_type,
+            </if>
+            <if test="companyAnnualTurnover != null">
+                company_annual_turnover,
+            </if>
+            <if test="companyTaxRate != null">
+                company_tax_rate,
+            </if>
+            <if test="companyAddress != null">
+                company_address,
+            </if>
+            <if test="companyBusinessScope != null">
+                company_business_scope,
+            </if>
+            <if test="companyLegalPersonName != null">
+                company_legal_person_name,
+            </if>
+            <if test="companyWebsite != null">
+                company_website,
+            </if>
+            <if test="companyLegalPersonCertificateType != null">
+                company_legal_person_certificate_type,
+            </if>
+            <if test="companyLegalPersonCertificateNumber != null">
+                company_legal_person_certificate_number,
+            </if>
+            <if test="companyLegalPersonCertificateTelephone != null">
+                company_legal_person_certificate_telephone,
+            </if>
+            <if test="companyBusinessLicense != null">
+                company_business_license,
+            </if>
+            <if test="companyUnifiedSocialCreditCode != null">
+                company_unified_social_credit_code,
+            </if>
+            <if test="companyBusinessLicenseIssueDate != null">
+                company_business_license_issue_date,
+            </if>
+            <if test="companyBusinessLicenseRegisterDate != null">
+                company_business_license_register_date,
+            </if>
+            <if test="companyBusinessLicenseValidatyDate != null">
+                company_business_license_validaty_date,
+            </if>
+            <if test="companyBusinessLicenseAddress != null">
+                company_business_license_address,
+            </if>
+            <if test="companyBusinessLicenseElectronicVersion != null">
+                company_business_license_electronic_version,
+            </if>
+            <if test="companyEnterpriseAuthorizationElectronicVersion != null">
+                company_enterprise_authorization_electronic_version,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="delFlag != null">
+                del_flag,
+            </if>
+            <if test="companyLogoId != null">
+                company_logo_id,
+            </if>
+            <if test="contactPosition != null">
+                contact_position,
+            </if>
+            <if test="contactName != null">
+                contact_name,
+            </if>
+            <if test="contactPhone != null">
+                contact_phone,
+            </if>
+            <if test="registeredAddress != null">
+                registered_address,
+            </if>
+            <if test="basicRate != null">
+                basic_rate,
+            </if>
+            <if test="floatRate != null">
+                float_rate,
+            </if>
+            <if test="finalRate != null">
+                final_rate,
+            </if>
+            <if test="companyInfoDetail != null">
+                company_info_detail,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="companyName != null">
+                #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyRegisteredCapital != null">
+                #{companyRegisteredCapital,jdbcType=DECIMAL},
+            </if>
+            <if test="companyEmployeeNumber != null">
+                #{companyEmployeeNumber,jdbcType=INTEGER},
+            </if>
+            <if test="companyTelephone != null">
+                #{companyTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyProvinceCityCountry != null">
+                #{companyProvinceCityCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="companyEnterpriseNature != null">
+                #{companyEnterpriseNature,jdbcType=VARCHAR},
+            </if>
+            <if test="companyTaxpayerType != null">
+                #{companyTaxpayerType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAnnualTurnover != null">
+                #{companyAnnualTurnover,jdbcType=VARCHAR},
+            </if>
+            <if test="companyTaxRate != null">
+                #{companyTaxRate,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddress != null">
+                #{companyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessScope != null">
+                #{companyBusinessScope,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonName != null">
+                #{companyLegalPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyWebsite != null">
+                #{companyWebsite,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonCertificateType != null">
+                #{companyLegalPersonCertificateType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonCertificateNumber != null">
+                #{companyLegalPersonCertificateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonCertificateTelephone != null">
+                #{companyLegalPersonCertificateTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessLicense != null">
+                #{companyBusinessLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="companyUnifiedSocialCreditCode != null">
+                #{companyUnifiedSocialCreditCode,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessLicenseIssueDate != null">
+                #{companyBusinessLicenseIssueDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyBusinessLicenseRegisterDate != null">
+                #{companyBusinessLicenseRegisterDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyBusinessLicenseValidatyDate != null">
+                #{companyBusinessLicenseValidatyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyBusinessLicenseAddress != null">
+                #{companyBusinessLicenseAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessLicenseElectronicVersion != null">
+                #{companyBusinessLicenseElectronicVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="companyEnterpriseAuthorizationElectronicVersion != null">
+                #{companyEnterpriseAuthorizationElectronicVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLogoId != null">
+                #{companyLogoId,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPosition != null">
+                #{contactPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="contactName != null">
+                #{contactName,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPhone != null">
+                #{contactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="registeredAddress != null">
+                #{registeredAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="basicRate != null">
+                #{basicRate,jdbcType=DECIMAL},
+            </if>
+            <if test="floatRate != null">
+                #{floatRate,jdbcType=DECIMAL},
+            </if>
+            <if test="finalRate != null">
+                #{finalRate,jdbcType=DECIMAL},
+            </if>
+            <if test="companyInfoDetail != null">
+                #{companyInfoDetail,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.ancaiyun.entity.MemberExtraData">
+        update cj_ancaiyun_member_extra_data
+        <set>
+            <if test="companyName != null">
+                company_name = #{companyName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyRegisteredCapital != null">
+                company_registered_capital = #{companyRegisteredCapital,jdbcType=DECIMAL},
+            </if>
+            <if test="companyEmployeeNumber != null">
+                company_employee_number = #{companyEmployeeNumber,jdbcType=INTEGER},
+            </if>
+            <if test="companyTelephone != null">
+                company_telephone = #{companyTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyProvinceCityCountry != null">
+                company_province_city_country = #{companyProvinceCityCountry,jdbcType=VARCHAR},
+            </if>
+            <if test="companyEnterpriseNature != null">
+                company_enterprise_nature = #{companyEnterpriseNature,jdbcType=VARCHAR},
+            </if>
+            <if test="companyTaxpayerType != null">
+                company_taxpayer_type = #{companyTaxpayerType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAnnualTurnover != null">
+                company_annual_turnover = #{companyAnnualTurnover,jdbcType=VARCHAR},
+            </if>
+            <if test="companyTaxRate != null">
+                company_tax_rate = #{companyTaxRate,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddress != null">
+                company_address = #{companyAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessScope != null">
+                company_business_scope = #{companyBusinessScope,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonName != null">
+                company_legal_person_name = #{companyLegalPersonName,jdbcType=VARCHAR},
+            </if>
+            <if test="companyWebsite != null">
+                company_website = #{companyWebsite,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonCertificateType != null">
+                company_legal_person_certificate_type = #{companyLegalPersonCertificateType,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonCertificateNumber != null">
+                company_legal_person_certificate_number = #{companyLegalPersonCertificateNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLegalPersonCertificateTelephone != null">
+                company_legal_person_certificate_telephone = #{companyLegalPersonCertificateTelephone,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessLicense != null">
+                company_business_license = #{companyBusinessLicense,jdbcType=VARCHAR},
+            </if>
+            <if test="companyUnifiedSocialCreditCode != null">
+                company_unified_social_credit_code = #{companyUnifiedSocialCreditCode,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessLicenseIssueDate != null">
+                company_business_license_issue_date = #{companyBusinessLicenseIssueDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyBusinessLicenseRegisterDate != null">
+                company_business_license_register_date = #{companyBusinessLicenseRegisterDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyBusinessLicenseValidatyDate != null">
+                company_business_license_validaty_date = #{companyBusinessLicenseValidatyDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyBusinessLicenseAddress != null">
+                company_business_license_address = #{companyBusinessLicenseAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="companyBusinessLicenseElectronicVersion != null">
+                company_business_license_electronic_version = #{companyBusinessLicenseElectronicVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="companyEnterpriseAuthorizationElectronicVersion != null">
+                company_enterprise_authorization_electronic_version = #{companyEnterpriseAuthorizationElectronicVersion,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="delFlag != null">
+                del_flag = #{delFlag,jdbcType=VARCHAR},
+            </if>
+            <if test="companyLogoId != null">
+                company_logo_id = #{companyLogoId,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPosition != null">
+                contact_position = #{contactPosition,jdbcType=VARCHAR},
+            </if>
+            <if test="contactName != null">
+                contact_name = #{contactName,jdbcType=VARCHAR},
+            </if>
+            <if test="contactPhone != null">
+                contact_phone = #{contactPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="registeredAddress != null">
+                registered_address = #{registeredAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="basicRate != null">
+                basic_rate = #{basicRate,jdbcType=DECIMAL},
+            </if>
+            <if test="floatRate != null">
+                float_rate = #{floatRate,jdbcType=DECIMAL},
+            </if>
+            <if test="finalRate != null">
+                final_rate = #{finalRate,jdbcType=DECIMAL},
+            </if>
+            <if test="companyInfoDetail != null">
+                company_info_detail = #{companyInfoDetail,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ancaiyun.entity.MemberExtraData">
+        update cj_ancaiyun_member_extra_data
+        set company_name = #{companyName,jdbcType=VARCHAR},
+        company_registered_capital = #{companyRegisteredCapital,jdbcType=DECIMAL},
+        company_employee_number = #{companyEmployeeNumber,jdbcType=INTEGER},
+        company_telephone = #{companyTelephone,jdbcType=VARCHAR},
+        company_province_city_country = #{companyProvinceCityCountry,jdbcType=VARCHAR},
+        company_enterprise_nature = #{companyEnterpriseNature,jdbcType=VARCHAR},
+        company_taxpayer_type = #{companyTaxpayerType,jdbcType=VARCHAR},
+        company_annual_turnover = #{companyAnnualTurnover,jdbcType=VARCHAR},
+        company_tax_rate = #{companyTaxRate,jdbcType=VARCHAR},
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+        company_business_scope = #{companyBusinessScope,jdbcType=VARCHAR},
+        company_legal_person_name = #{companyLegalPersonName,jdbcType=VARCHAR},
+        company_website = #{companyWebsite,jdbcType=VARCHAR},
+        company_legal_person_certificate_type = #{companyLegalPersonCertificateType,jdbcType=VARCHAR},
+        company_legal_person_certificate_number = #{companyLegalPersonCertificateNumber,jdbcType=VARCHAR},
+        company_legal_person_certificate_telephone = #{companyLegalPersonCertificateTelephone,jdbcType=VARCHAR},
+        company_business_license = #{companyBusinessLicense,jdbcType=VARCHAR},
+        company_unified_social_credit_code = #{companyUnifiedSocialCreditCode,jdbcType=VARCHAR},
+        company_business_license_issue_date = #{companyBusinessLicenseIssueDate,jdbcType=TIMESTAMP},
+        company_business_license_register_date = #{companyBusinessLicenseRegisterDate,jdbcType=TIMESTAMP},
+        company_business_license_validaty_date = #{companyBusinessLicenseValidatyDate,jdbcType=TIMESTAMP},
+        company_business_license_address = #{companyBusinessLicenseAddress,jdbcType=VARCHAR},
+        company_business_license_electronic_version = #{companyBusinessLicenseElectronicVersion,jdbcType=VARCHAR},
+        company_enterprise_authorization_electronic_version = #{companyEnterpriseAuthorizationElectronicVersion,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+        company_logo_id = #{companyLogoId,jdbcType=VARCHAR},
+        contact_position = #{contactPosition,jdbcType=VARCHAR},
+        contact_name = #{contactName,jdbcType=VARCHAR},
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+        registered_address = #{registeredAddress,jdbcType=VARCHAR},
+        basic_rate = #{basicRate,jdbcType=DECIMAL},
+        float_rate = #{floatRate,jdbcType=DECIMAL},
+        final_rate = #{finalRate,jdbcType=DECIMAL},
+        company_info_detail = #{companyInfoDetail,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.ancaiyun.entity.MemberExtraData">
+        update cj_ancaiyun_member_extra_data
+        set company_name = #{companyName,jdbcType=VARCHAR},
+        company_registered_capital = #{companyRegisteredCapital,jdbcType=DECIMAL},
+        company_employee_number = #{companyEmployeeNumber,jdbcType=INTEGER},
+        company_telephone = #{companyTelephone,jdbcType=VARCHAR},
+        company_province_city_country = #{companyProvinceCityCountry,jdbcType=VARCHAR},
+        company_enterprise_nature = #{companyEnterpriseNature,jdbcType=VARCHAR},
+        company_taxpayer_type = #{companyTaxpayerType,jdbcType=VARCHAR},
+        company_annual_turnover = #{companyAnnualTurnover,jdbcType=VARCHAR},
+        company_tax_rate = #{companyTaxRate,jdbcType=VARCHAR},
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+        company_business_scope = #{companyBusinessScope,jdbcType=VARCHAR},
+        company_legal_person_name = #{companyLegalPersonName,jdbcType=VARCHAR},
+        company_website = #{companyWebsite,jdbcType=VARCHAR},
+        company_legal_person_certificate_type = #{companyLegalPersonCertificateType,jdbcType=VARCHAR},
+        company_legal_person_certificate_number = #{companyLegalPersonCertificateNumber,jdbcType=VARCHAR},
+        company_legal_person_certificate_telephone = #{companyLegalPersonCertificateTelephone,jdbcType=VARCHAR},
+        company_business_license = #{companyBusinessLicense,jdbcType=VARCHAR},
+        company_unified_social_credit_code = #{companyUnifiedSocialCreditCode,jdbcType=VARCHAR},
+        company_business_license_issue_date = #{companyBusinessLicenseIssueDate,jdbcType=TIMESTAMP},
+        company_business_license_register_date = #{companyBusinessLicenseRegisterDate,jdbcType=TIMESTAMP},
+        company_business_license_validaty_date = #{companyBusinessLicenseValidatyDate,jdbcType=TIMESTAMP},
+        company_business_license_address = #{companyBusinessLicenseAddress,jdbcType=VARCHAR},
+        company_business_license_electronic_version = #{companyBusinessLicenseElectronicVersion,jdbcType=VARCHAR},
+        company_enterprise_authorization_electronic_version = #{companyEnterpriseAuthorizationElectronicVersion,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+        company_logo_id = #{companyLogoId,jdbcType=VARCHAR},
+        contact_position = #{contactPosition,jdbcType=VARCHAR},
+        contact_name = #{contactName,jdbcType=VARCHAR},
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+        registered_address = #{registeredAddress,jdbcType=VARCHAR},
+        basic_rate = #{basicRate,jdbcType=DECIMAL},
+        float_rate = #{floatRate,jdbcType=DECIMAL},
+        final_rate = #{finalRate,jdbcType=DECIMAL}
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+</mapper>

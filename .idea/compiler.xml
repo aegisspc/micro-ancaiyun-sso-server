@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="micro-ancaiyun-admin-sso-service" />
+        <module name="micro-ancaiyun-eureka-server" />
+        <module name="micro-ancaiyun-sso-server" />
+        <module name="micro-ancaiyun-zuul" />
+        <module name="mirco-ancaiyun-admin-server" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="micro-ancaiyun-admin-sso-service" target="1.8" />
+      <module name="micro-ancaiyun-eureka-server" target="1.8" />
+      <module name="micro-ancaiyun-member-server" target="1.8" />
+      <module name="micro-ancaiyun-sso-server" target="1.8" />
+      <module name="micro-ancaiyun-zuul" target="1.8" />
+      <module name="mirco-ancaiyun-admin-server" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
