@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../micro-ancaiyun-admin-sso-server/micro-ancaiyun-admin-sso-service.iml" filepath="$PROJECT_DIR$/../micro-ancaiyun-admin-sso-server/micro-ancaiyun-admin-sso-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/../micro-ancaiyun-eureka-server/micro-ancaiyun-eureka-server.iml" filepath="$PROJECT_DIR$/../micro-ancaiyun-eureka-server/micro-ancaiyun-eureka-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/micro-ancaiyun-sso-server.iml" filepath="$PROJECT_DIR$/micro-ancaiyun-sso-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/../micro-ancaiyun-zuul-server/micro-ancaiyun-zuul.iml" filepath="$PROJECT_DIR$/../micro-ancaiyun-zuul-server/micro-ancaiyun-zuul.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../mirco-ancaiyun-admin-server/mirco-ancaiyun-admin-server.iml" filepath="$PROJECT_DIR$/../mirco-ancaiyun-admin-server/mirco-ancaiyun-admin-server.iml" />
     </modules>
   </component>
 </project>

@@ -15,18 +15,6 @@
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
       <map>
-        <entry key="$PROJECT_DIR$/../micro-ancaiyun-member-server">
-          <value>
-            <SvnBranchConfiguration>
-              <option name="branchUrls">
-                <list>
-                  <option value="https://192.168.13.239/svn/changjiangyunshang/branches" />
-                </list>
-              </option>
-              <option name="trunkUrl" value="https://192.168.13.239/svn/changjiangyunshang/branches/code/micro-ancaiyun/micro-ancaiyun-member-server" />
-            </SvnBranchConfiguration>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$">
           <value>
             <SvnBranchConfiguration>
@@ -41,6 +29,5 @@
         </entry>
       </map>
     </option>
-    <option name="mySupportsUserInfoFilter" value="true" />
   </component>
 </project>

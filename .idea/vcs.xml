@@ -3,6 +3,9 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="svn" />
     <mapping directory="$PROJECT_DIR$/../micro-ancaiyun-admin-sso-server" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../micro-ancaiyun-eureka-server" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../micro-ancaiyun-zuul-server" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../mirco-ancaiyun-admin-server" vcs="svn" />
   </component>
 </project>
